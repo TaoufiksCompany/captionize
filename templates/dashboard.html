@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ user[1] }}</h1>
+    <p>Hourly usage: {{ user[3] }}/{{ user[4] * 0.5 }} hours</p>
+    
+    <!-- Display existing API keys -->
+    <h2>Your API Keys:</h2>
+    {% for api_key, api_key_name, key_id in api_keys %}
+        <div class="api-key">
+            <p>{{ api_key_name }}: {{ api_key }}</p>
+            <form method="POST" action="{{ url_for('remove_api_key', key_id=key_id) }}">
+                <button type="submit" class="btn btn-danger">Remove</button>
+            </form>
+        </div>
+    {% endfor %}
+
+
+    <form method="POST" action="{{ url_for('create_api_key') }}">
+        <div class="mb-3">
+            <label for="api_key_name" class="form-label">API Key Name (optional)</label>
+            <input type="text" class="form-control" id="api_key_name" name="api_key_name">
+        </div>
+        <button type="submit" class="btn btn-primary">Create API Key</button>
+    </form>
+    
+    <!-- Add a logout button -->
+    <form method="POST" action="{{ url_for('logout') }}">
+      <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
+</body>
+</html>
