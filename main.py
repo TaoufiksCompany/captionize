@@ -240,6 +240,9 @@ def remove_api_key(key_id):
 @app.route('/transcribe', methods=['POST'])
 @app.route('/transcribe/<model>', methods=['POST'])
 def upload(model:str='tiny'):
+    if model != 'tiny' or model !='medium':
+      return jsonify({'error': "Model name isn't valid"}), 401
+      
     api_key = request.headers.get('API-Key')
     
     # Check if the API key exists in the database
@@ -310,4 +313,6 @@ def upload(model:str='tiny'):
     return jsonify({'captions': captions, 'process_time': process_time, 'success': True})
 
 if __name__ == '__main__':
+    WhisperModel('medium')
+    WhisperModel('tiny')
     app.run(port=81)
