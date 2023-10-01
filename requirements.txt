@@ -1,3 +1,4 @@
 Flask
 faster_whisper
 moviepy
+gunicorn
