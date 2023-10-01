@@ -313,6 +313,5 @@ def upload(model:str='tiny'):
     return jsonify({'captions': captions, 'process_time': process_time, 'success': True})
 
 if __name__ == '__main__':
-    WhisperModel('medium')
     WhisperModel('tiny')
     app.run(port=81)
