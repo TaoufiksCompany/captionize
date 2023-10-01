@@ -1,4 +1,3 @@
-pip install --upgrade pip
-pip install Flask
-pip install faster_whisper
-pip install moviepy
+Flask
+faster_whisper
+moviepy
